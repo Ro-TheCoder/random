@@ -11,7 +11,7 @@ def create_f(filename:str,m_admno:list,m_values:list):
 		pickle.dump(f1,d)
 		return {"process":"completed"}
 	except:
-		return {"process":"error"
+		return {"process":"error"}
 
 def read_f(filename):
 	try:
