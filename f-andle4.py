@@ -1,6 +1,7 @@
 
 # write a program to write a binary file with only dictionaries and read it later as per menu. 
 import pickle
+import sys
 
 def create_f(filename:str,m_admno:list,m_values:list):
 	try:
@@ -22,14 +23,43 @@ def read_f(filename):
 		return{"contents":False}
 		
 def main():
-	flag=True
-	while flag==True:
+	while True:
 		print("1 --> Create a file of data\n2 --> Read a file of data\n3 --> Exit the program")
 		choice=int(input("Enter choice: "))
+		f_name=input("Enter Filename: ").strip()
 		if choice==1:
 			admno=[]
 			values=[]
 			try:
 				x=int(input("enter number of records you want to enter:"))
 				for i in range(x):
-					admno.append(input("Enter admno of record no.{}".format(i).strip()))
+					value=[]
+					admno.append(input("Enter admno of record no.{}: ".format(i).strip()))
+					value.append(input("Enter name of {}: ".format(admno[i])))
+					value.append(input("Enter class of {}: ".format(admno[i])))
+					value.append(input("Enter section of {}: ".format(admno[i])))
+					value.append(input("Enter Roll number of {}: ".format(admno[i])))
+					values.append(value)
+				x=create_f(f_name,admno,values)
+				if x["process"]!="error":
+					print("process is completed")
+				else: raise OSError
+			except:
+				print("Unexpected Error")
+				
+			finally:
+				print("continuing program")
+				continue
+		
+		if choice==2:
+			f_name=input("Enter Filename: ").strip()
+			cnt=read_f(f_name)["contents"]
+			if cnt!=False:
+				print(cnt)
+			else: 
+				print("Unexpected Error")
+			
+		if choice==3:
+			sys.exit(0)
+if '__name__'=='__main__':
+	main()				
