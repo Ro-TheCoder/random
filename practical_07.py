@@ -18,3 +18,5 @@ def main():
 	
 if __name__=="__main__":
 	main()
+# Write a user defined function named as 'push3_5(N)' which accepts list of integer in a parameter 'N'and pushes all those integers which are divisible by 3 or 5 from the list 'N' intoa list named "only3_5".
+# Write  
